@@ -19,7 +19,7 @@ schema = StructType([
 df = spark.read.schema(schema).csv("file:///home/sambiase/courses/SparkCourse/customer-orders.csv")
 df.printSchema()
 
-# Filter out all but TMIN entries
+# Group CustomerID and SUM total Spent by each customer
 totalSpentByCustomer = df.groupBy("customerID").agg(func.round(func.sum("totalSpent"), 2).alias("total_spent"))
 totalSpentByCustomerSorted = totalSpentByCustomer.sort("total_spent")
 totalSpentByCustomerSorted.show(totalSpentByCustomerSorted.count())
