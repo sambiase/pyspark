@@ -11,7 +11,7 @@ schema = StructType([StructField("userID", IntegerType(), True),
                     StructField("timestamp", LongType(), True)])
 
 # Load up movie data as dataframe
-# \t means that it is a tab separated file and not a CSV file
+# \t means that separation is done by a tab and not a comma
 moviesDF = spark.read.option("sep", "\t").schema(schema).csv("file:///home/sambiase/courses/SparkCourse/ml-100k/u.data")
 
 # Some SQL-style magic to sort all movies by popularity in one line!
